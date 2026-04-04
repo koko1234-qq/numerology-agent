@@ -3,12 +3,28 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
+// 获取数据库连接URL
+// 如果环境变量中有有效的DATABASE_URL，使用它
+// 否则使用一个虚拟的PostgreSQL连接字符串（用于构建时）
+function getDatabaseUrl(): string {
+  const envUrl = process.env["DATABASE_URL"];
+
+  // 检查是否设置了有效的数据库URL
+  if (envUrl && envUrl.trim() !== "" && !envUrl.includes("localhost") && !envUrl.includes("johndoe")) {
+    return envUrl;
+  }
+
+  // 使用虚拟连接字符串（仅用于构建，实际运行时需要真实数据库）
+  console.warn("使用虚拟数据库连接字符串，实际运行时需要配置有效的DATABASE_URL环境变量");
+  return "postgresql://dummyuser:dummypassword@dummyhost:5432/dummydb?schema=public";
+}
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: getDatabaseUrl(),
   },
 });
