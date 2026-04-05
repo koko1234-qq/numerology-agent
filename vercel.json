@@ -7,7 +7,7 @@
   "env": {
     "MINIMAX_API_KEY": {
       "description": "Minimax API密钥，用于命理分析（可选，不设置则使用模拟模式）",
-      "value": ""
+      "value": "your_minimax_api_key_here"
     },
     "MINIMAX_API_BASE_URL": {
       "description": "Minimax API基础URL",
