@@ -6,7 +6,8 @@
   "regions": ["hkg1"],
   "env": {
     "MINIMAX_API_KEY": {
-      "description": "Minimax API密钥，用于命理分析（可选，不设置则使用模拟模式）"
+      "description": "Minimax API密钥，用于命理分析（可选，不设置则使用模拟模式）",
+      "value": ""
     },
     "MINIMAX_API_BASE_URL": {
       "description": "Minimax API基础URL",
